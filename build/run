@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-DIR="$( dirname "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )" )"
+cd "$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-docker build -t test-app ${DIR}/build/app
-docker run --name test-app -d -v ${DIR}:/var/test-app test-app
+docker-compose up -d
