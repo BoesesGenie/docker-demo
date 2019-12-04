@@ -14,5 +14,20 @@ services:
     build:
       context: ../
       dockerfile: build/php-fpm/Dockerfile
+    depends_on:
+      - test-app-postgres
+      - test-app-redis
     volumes:
       - ../:/var/test-app/
+
+  test-app-postgres:
+    image: postgres:12.1
+    volumes:
+      - /var/lib/postgres
+    environment:
+      POSTGRES_DB: testapp
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: fks7lwm32l
+
+  test-app-redis:
+    image: redis:5.0.7
